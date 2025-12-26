@@ -21,21 +21,21 @@ const Products = () => {
   ];
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const category = selectedCategory === 'all' ? null : selectedCategory;
+        const data = await getProducts(category);
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProducts();
   }, [selectedCategory]);
-
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const category = selectedCategory === 'all' ? null : selectedCategory;
-      const data = await getProducts(category);
-      setProducts(data);
-    } catch (error) {
-      console.error('Failed to fetch products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -79,8 +79,8 @@ const Products = () => {
                 onClick={() => setSelectedCategory(cat.id)}
                 variant={selectedCategory === cat.id ? 'default' : 'outline'}
                 className={`${selectedCategory === cat.id
-                    ? `${cat.color} text-white hover:opacity-90`
-                    : 'border-2 hover:bg-gray-50'
+                  ? `${cat.color} text-white hover:opacity-90`
+                  : 'border-2 hover:bg-gray-50'
                   } px-6 py-5 text-base font-medium transition-all`}
               >
                 {cat.name}

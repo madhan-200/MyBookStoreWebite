@@ -23,20 +23,20 @@ const Reviews = () => {
   });
 
   useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoading(true);
+        const data = await getReviews();
+        setReviews(data);
+      } catch (error) {
+        console.error('Failed to fetch reviews:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchReviews();
   }, []);
-
-  const fetchReviews = async () => {
-    try {
-      setLoading(true);
-      const data = await getReviews();
-      setReviews(data);
-    } catch (error) {
-      console.error('Failed to fetch reviews:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,8 +68,8 @@ const Reviews = () => {
           <Star
             key={star}
             className={`w-5 h-5 ${star <= rating
-                ? 'fill-amber-500 text-amber-500'
-                : 'text-gray-300'
+              ? 'fill-amber-500 text-amber-500'
+              : 'text-gray-300'
               }`}
           />
         ))}
@@ -137,8 +137,8 @@ const Reviews = () => {
                         >
                           <Star
                             className={`w-10 h-10 ${star <= formData.rating
-                                ? 'fill-amber-500 text-amber-500'
-                                : 'text-gray-300'
+                              ? 'fill-amber-500 text-amber-500'
+                              : 'text-gray-300'
                               }`}
                           />
                         </button>

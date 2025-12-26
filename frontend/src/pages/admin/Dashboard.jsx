@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Package,
@@ -60,15 +60,7 @@ const AdminDashboard = () => {
     const [reviewForm, setReviewForm] = useState({ name: '', rating: 5, comment: '', date: new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) });
     const [securityForm, setSecurityForm] = useState({ old_password: '', new_password: '', confirm_password: '' });
 
-    useEffect(() => {
-        if (!token) {
-            navigate('/admin/login');
-            return;
-        }
-        fetchData();
-    }, [token]);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
             setLoading(true);
             const [adminData, productsData, reviewsData, galleryData] = await Promise.all([
@@ -88,7 +80,15 @@ const AdminDashboard = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [token, navigate]);
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/admin/login');
+            return;
+        }
+        fetchData();
+    }, [token, navigate, fetchData]);
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');

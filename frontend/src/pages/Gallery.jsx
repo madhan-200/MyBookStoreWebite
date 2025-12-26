@@ -8,20 +8,20 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        setLoading(true);
+        const data = await getGallery();
+        setGalleryItems(data);
+      } catch (error) {
+        console.error('Failed to fetch gallery:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchGallery();
   }, []);
-
-  const fetchGallery = async () => {
-    try {
-      setLoading(true);
-      const data = await getGallery();
-      setGalleryItems(data);
-    } catch (error) {
-      console.error('Failed to fetch gallery:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
