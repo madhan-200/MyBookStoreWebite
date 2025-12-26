@@ -95,11 +95,16 @@ const Products = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-6">
             <p className="text-gray-600 text-center">
-              Showing {filteredProducts.length} products
+              {loading ? 'Loading products...' : `Showing ${filteredProducts.length} products`}
             </p>
           </div>
 
-          {filteredProducts.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-16">
+              <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4 animate-pulse" />
+              <p className="text-xl text-gray-500">Loading products...</p>
+            </div>
+          ) : filteredProducts.length === 0 ? (
             <div className="text-center py-16">
               <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <p className="text-xl text-gray-500">No products found</p>
