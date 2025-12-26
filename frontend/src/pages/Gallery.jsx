@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image as ImageIcon } from 'lucide-react';
 import { Card } from '../components/ui/card';
-import { mockGalleryImages } from '../data/mock';
+import { getGallery } from '../services/api';
 
 const Gallery = () => {
   return (
