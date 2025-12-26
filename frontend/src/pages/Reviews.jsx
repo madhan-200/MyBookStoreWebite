@@ -69,25 +69,32 @@ const Reviews = () => {
       {/* Reviews Grid */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockReviews.map((review, idx) => (
-              <Card key={idx} className="hover:shadow-xl transition-shadow relative">
-                <CardContent className="p-6">
-                  <Quote className="w-10 h-10 text-amber-200 mb-4" />
-                  <div className="mb-4">
-                    {renderStars(review.rating)}
-                  </div>
-                  <p className="text-gray-700 leading-relaxed mb-4 italic">
-                    "{review.comment}"
-                  </p>
-                  <div className="border-t pt-4">
-                    <p className="font-semibold text-gray-900">{review.name}</p>
-                    <p className="text-sm text-gray-500">{review.date}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-16">
+              <Star className="w-16 h-16 text-gray-300 mx-auto mb-4 animate-pulse" />
+              <p className="text-xl text-gray-500">Loading reviews...</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {reviews.map((review, idx) => (
+                <Card key={review._id || idx} className="hover:shadow-xl transition-shadow relative">
+                  <CardContent className="p-6">
+                    <Quote className="w-10 h-10 text-amber-200 mb-4" />
+                    <div className="mb-4">
+                      {renderStars(review.rating)}
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-4 italic">
+                      "{review.comment}"
+                    </p>
+                    <div className="border-t pt-4">
+                      <p className="font-semibold text-gray-900">{review.name}</p>
+                      <p className="text-sm text-gray-500">{review.date}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
