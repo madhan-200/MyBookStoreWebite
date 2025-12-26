@@ -1,0 +1,56 @@
+import React from 'react';
+import { Image as ImageIcon } from 'lucide-react';
+import { Card } from '../components/ui/card';
+import { mockGalleryImages } from '../data/mock';
+
+const Gallery = () => {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <section className="bg-gradient-to-b from-amber-50 to-white py-16 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Our Gallery
+          </h1>
+          <p className="text-xl text-gray-600">
+            Take a look at our store, products, and happy customers
+          </p>
+        </div>
+      </section>
+
+      {/* Gallery Grid */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {mockGalleryImages.map((image, idx) => (
+              <Card key={idx} className="overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer">
+                <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative overflow-hidden">
+                  <ImageIcon className="w-16 h-16 text-amber-600 group-hover:scale-110 transition-transform" />
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-gray-900">{image.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{image.description}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Visit Store CTA */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Visit Our Store in Person
+          </h2>
+          <p className="text-lg text-gray-600 mb-6">
+            Experience the complete range of books and stationery at our Town Hall location
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Gallery;
