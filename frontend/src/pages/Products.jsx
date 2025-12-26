@@ -112,7 +112,7 @@ const Products = () => {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map(product => (
-                <Card key={product.id} className="hover:shadow-xl transition-shadow">
+                <Card key={product._id} className="hover:shadow-xl transition-shadow">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
