@@ -9,10 +9,10 @@ const About = () => {
       <section className="bg-gradient-to-b from-amber-50 to-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            About Radhamani Stores
+            About PrimeBooks & Stationery
           </h1>
           <p className="text-xl text-gray-600">
-            Your Trusted Partner in Education & Stationery
+            Your Trusted Partner in Education & Stationery in Vadalur
           </p>
         </div>
       </section>
@@ -22,15 +22,15 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg max-w-none">
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Located in the heart of Coimbatore's Town Hall area, <span className="font-semibold text-amber-800">Radhamani Stores</span> has been serving students, families, and book lovers with dedication and trust. We are conveniently situated inside Maharaja Fancy at Shop No-137, Raja Street, making us easily accessible to everyone in the city.
+              Located in <span className="font-semibold text-amber-800">Abatharanapuram, Vadalur</span>, PrimeBooks & Stationery is dedicated to serving students, teachers, and book enthusiasts with quality educational materials. We pride ourselves on being a comprehensive resource for all your academic and stationery needs.
             </p>
-            
+
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Our store specializes in providing a comprehensive range of school books, study guides, general reading materials, and complete stationery supplies. We understand the importance of quality education materials, and that's why we ensure the availability of the latest editions at genuine, affordable prices.
+              Our store specializes in a wide selection of school books (across various boards), expert study guides, competitive exam materials for SSC, TNPSC, and NEET, as well as a charming collection of kids' books. We also offer a complete range of premium quality stationery products.
             </p>
 
             <p className="text-lg text-gray-700 leading-relaxed">
-              With a rating of 3.8 stars from our valued customers, we take pride in being a reliable destination for all your book and stationery needs. Our friendly staff is always ready to help you find exactly what you're looking for.
+              We understand that the right tools are essential for success. That's why we focus on providing the latest editions at affordable prices, paired with friendly and knowledgeable service to help you find exactly what you need.
             </p>
           </div>
         </div>
@@ -42,7 +42,7 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Why Choose Us?
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="border-t-4 border-t-amber-600 shadow-lg">
               <CardContent className="p-8">
@@ -51,9 +51,9 @@ const About = () => {
                     <Award className="w-8 h-8 text-amber-700" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-3">Trusted by Families</h3>
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">Student Focused</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Years of service have built strong relationships with students and families across Coimbatore. We're known for our reliability and genuine products.
+                      We focus on providing the best materials for students of all ages in Vadalur. Our collection is curated to support academic excellence.
                     </p>
                   </div>
                 </div>
@@ -67,9 +67,9 @@ const About = () => {
                     <Heart className="w-8 h-8 text-green-700" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-3">Affordable Pricing</h3>
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">Competitive Prices</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      We believe quality education materials should be accessible to everyone. Our prices are genuine and competitive, ensuring value for money.
+                      Quality education should be affordable. We offer competitive pricing on all our books and stationery items.
                     </p>
                   </div>
                 </div>
@@ -83,9 +83,9 @@ const About = () => {
                     <MapPin className="w-8 h-8 text-blue-700" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-3">Prime Location</h3>
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">Vadalur Store</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Conveniently located in Town Hall's busy center, inside Maharaja Fancy. Easy to reach and well-connected to all parts of the city.
+                      Conveniently located in Abatharanapuram, Vadalur. Easily accessible for students across Cuddalore district.
                     </p>
                   </div>
                 </div>
@@ -99,9 +99,9 @@ const About = () => {
                     <Users className="w-8 h-8 text-red-700" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-3">Friendly Service</h3>
+                    <h3 className="font-bold text-xl text-gray-900 mb-3">Expert Guidance</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Our staff is knowledgeable and always ready to assist you. We help you find the right books and materials for your specific needs.
+                      Our staff is always ready to help you choose the right guides and competitive exam materials for your career goals.
                     </p>
                   </div>
                 </div>
@@ -117,19 +117,19 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Store Highlights
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div className="p-6">
-              <div className="text-4xl font-bold text-amber-700 mb-2">Years</div>
-              <div className="text-gray-600 font-medium">Of Trusted Service</div>
+              <div className="text-4xl font-bold text-amber-700 mb-2">Primary</div>
+              <div className="text-gray-600 font-medium">Educational Resource</div>
             </div>
             <div className="p-6">
-              <div className="text-4xl font-bold text-green-700 mb-2">1000+</div>
-              <div className="text-gray-600 font-medium">Happy Customers</div>
+              <div className="text-4xl font-bold text-green-700 mb-2">100%</div>
+              <div className="text-gray-600 font-medium">Quality Stationery</div>
             </div>
             <div className="p-6">
               <div className="text-4xl font-bold text-blue-700 mb-2">Daily</div>
-              <div className="text-gray-600 font-medium">Open Till 9 PM</div>
+              <div className="text-gray-600 font-medium">Except Sunday</div>
             </div>
           </div>
         </div>

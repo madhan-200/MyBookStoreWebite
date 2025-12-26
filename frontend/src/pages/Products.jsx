@@ -14,9 +14,10 @@ const Products = () => {
   const categories = [
     { id: 'all', name: 'All Products', color: 'bg-gray-600' },
     { id: 'school', name: 'School Books', color: 'bg-amber-600' },
-    { id: 'guides', name: 'Study Guides', color: 'bg-blue-600' },
-    { id: 'reading', name: 'General Reading', color: 'bg-green-600' },
-    { id: 'stationery', name: 'Stationery', color: 'bg-red-600' }
+    { id: 'guides', name: 'Guides', color: 'bg-blue-600' },
+    { id: 'competitive', name: 'Competitive Exam', color: 'bg-red-600' },
+    { id: 'kids', name: 'Kids Books', color: 'bg-purple-600' },
+    { id: 'stationery', name: 'Stationery', color: 'bg-green-600' }
   ];
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const Products = () => {
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      product.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
   });
 
@@ -48,18 +49,18 @@ const Products = () => {
       <section className="bg-gradient-to-b from-amber-50 to-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-center">
-            Books & Stationery
+            PrimeBooks & Stationery
           </h1>
           <p className="text-xl text-gray-600 text-center mb-8">
-            Browse our wide collection of books and stationery items
+            Explore our premium collection of educational books and quality stationery
           </p>
-          
+
           {/* Search Bar */}
           <div className="max-w-md mx-auto relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <Input
               type="text"
-              placeholder="Search products..."
+              placeholder="Search books or stationery..."
               className="pl-10 py-6 text-lg"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -77,11 +78,10 @@ const Products = () => {
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
                 variant={selectedCategory === cat.id ? 'default' : 'outline'}
-                className={`${
-                  selectedCategory === cat.id
+                className={`${selectedCategory === cat.id
                     ? `${cat.color} text-white hover:opacity-90`
                     : 'border-2 hover:bg-gray-50'
-                } px-6 py-5 text-base font-medium transition-all`}
+                  } px-6 py-5 text-base font-medium transition-all`}
               >
                 {cat.name}
               </Button>
@@ -95,7 +95,7 @@ const Products = () => {
         <div className="max-w-6xl mx-auto">
           <div className="mb-6">
             <p className="text-gray-600 text-center">
-              {loading ? 'Loading products...' : `Showing ${filteredProducts.length} products`}
+              {loading ? 'Loading products...' : `Showing ${filteredProducts.length} items`}
             </p>
           </div>
 
@@ -147,18 +147,18 @@ const Products = () => {
       <section className="py-12 px-4 bg-amber-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">
-            Can't find what you're looking for?
+            Looking for something specific?
           </h2>
           <p className="text-xl mb-6 text-amber-50">
-            Call us or visit our store - we'll help you find it!
+            Visit our store in Vadalur - we're happy to help!
           </p>
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             variant="secondary"
             className="px-8 py-6 text-lg"
-            onClick={() => window.location.href = 'tel:04222392122'}
+            onClick={() => window.location.href = '/contact'}
           >
-            Call Us Now
+            Visit Us
           </Button>
         </div>
       </section>

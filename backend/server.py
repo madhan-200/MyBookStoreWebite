@@ -11,7 +11,7 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # Create the main app
-app = FastAPI(title="Radhamani Stores API", version="1.0.0")
+app = FastAPI(title="PrimeBooks & Stationery API", version="1.0.0")
 
 # Include routers
 app.include_router(public.router)
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 
 @app.get("/")
 async def root():
-    return {"message": "Radhamani Stores API is running"}
+    return {"message": "PrimeBooks & Stationery API is running"}
 
 
 @app.get("/health")

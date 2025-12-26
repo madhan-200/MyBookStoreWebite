@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isAdmin = !!localStorage.getItem('adminToken');
 
   const navLinks = [
     { path: '/', label: 'Home' },
@@ -28,8 +29,7 @@ const Header = () => {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <div>
-              <div className="font-bold text-gray-900 text-lg leading-tight">Radhamani Stores</div>
-              <div className="text-xs text-amber-700 font-medium">ராதாமணி ஸ்டோர்ஸ்</div>
+              <div className="font-bold text-gray-900 text-lg leading-tight text-nowrap">PrimeBooks & Stationery</div>
             </div>
           </Link>
 
@@ -39,26 +39,35 @@ const Header = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'bg-amber-100 text-amber-800'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${isActive(link.path)
+                  ? 'bg-amber-100 text-amber-800'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop Call Button */}
-          <div className="hidden md:block">
-            <Button 
+          {/* Desktop Call/Admin Buttons */}
+          <div className="hidden md:flex items-center gap-2">
+            {isAdmin && (
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-amber-600 text-amber-700 hover:bg-amber-50"
+                onClick={() => window.location.href = '/admin/dashboard'}
+              >
+                Admin Dashboard
+              </Button>
+            )}
+            <Button
               size="sm"
               className="bg-green-600 hover:bg-green-700 text-white"
-              onClick={() => window.location.href = 'tel:04222392122'}
+              onClick={() => window.location.href = '/contact'}
             >
               <Phone className="w-4 h-4 mr-2" />
-              Call Us
+              Contact Us
             </Button>
           </div>
 
@@ -79,26 +88,38 @@ const Header = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-4 py-3 rounded-lg font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'bg-amber-100 text-amber-800'
-                      : 'text-gray-700 hover:bg-gray-100'
-                  }`}
+                  className={`px-4 py-3 rounded-lg font-medium transition-colors ${isActive(link.path)
+                    ? 'bg-amber-100 text-amber-800'
+                    : 'text-gray-700 hover:bg-gray-100'
+                    }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button 
+              {isAdmin && (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-amber-600 text-amber-700 hover:bg-amber-50"
+                  onClick={() => {
+                    window.location.href = '/admin/dashboard';
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Admin Dashboard
+                </Button>
+              )}
+              <Button
                 size="sm"
                 className="bg-green-600 hover:bg-green-700 text-white mt-2"
                 onClick={() => {
-                  window.location.href = 'tel:04222392122';
+                  window.location.href = '/contact';
                   setMobileMenuOpen(false);
                 }}
               >
                 <Phone className="w-4 h-4 mr-2" />
-                Call Us
+                Contact Us
               </Button>
             </div>
           </nav>

@@ -49,9 +49,19 @@ const Gallery = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {galleryItems.map((image) => (
                 <Card key={image._id} className="overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer">
-                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative overflow-hidden">
-                    <ImageIcon className="w-16 h-16 text-amber-600 group-hover:scale-110 transition-transform" />
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
+                  <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                    {image.image_url ? (
+                      <img
+                        src={image.image_url}
+                        alt={image.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
+                        <ImageIcon className="w-16 h-16 text-amber-600" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-gray-900">{image.title}</h3>
@@ -71,7 +81,7 @@ const Gallery = () => {
             Visit Our Store in Person
           </h2>
           <p className="text-lg text-gray-600 mb-6">
-            Experience the complete range of books and stationery at our Town Hall location
+            Experience the complete range of books and stationery at our Vadalur location
           </p>
         </div>
       </section>

@@ -80,6 +80,18 @@ export const getAdminMe = async (token) => {
   }
 };
 
+export const changePassword = async (passwordData, token) => {
+  try {
+    const response = await axios.post(`${API}/admin/change-password`, passwordData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error changing password:', error);
+    throw error;
+  }
+};
+
 // Admin Products API
 export const createProduct = async (productData, token) => {
   try {
@@ -125,6 +137,30 @@ export const getAllReviews = async (token) => {
     return response.data;
   } catch (error) {
     console.error('Error fetching all reviews:', error);
+    throw error;
+  }
+};
+
+export const createReviewAdmin = async (reviewData, token) => {
+  try {
+    const response = await axios.post(`${API}/admin/reviews`, reviewData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error creating review:', error);
+    throw error;
+  }
+};
+
+export const updateReviewAdmin = async (id, reviewData, token) => {
+  try {
+    const response = await axios.put(`${API}/admin/reviews/${id}`, reviewData, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating review:', error);
     throw error;
   }
 };

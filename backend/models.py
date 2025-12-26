@@ -64,6 +64,10 @@ class ReviewCreate(ReviewBase):
 
 
 class ReviewUpdate(BaseModel):
+    name: Optional[str] = None
+    rating: Optional[int] = None
+    comment: Optional[str] = None
+    date: Optional[str] = None
     approved: Optional[bool] = None
 
 
@@ -137,3 +141,8 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+
+class AdminPasswordChange(BaseModel):
+    old_password: str
+    new_password: str

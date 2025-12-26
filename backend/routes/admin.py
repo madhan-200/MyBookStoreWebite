@@ -3,9 +3,9 @@ from typing import List
 from datetime import datetime, timedelta
 from bson import ObjectId
 from models import (
-    AdminUserCreate, AdminUserLogin, AdminUser, Token,
+    AdminUserCreate, AdminUserLogin, AdminUser, Token, AdminPasswordChange,
     Product, ProductCreate, ProductUpdate,
-    Review, ReviewUpdate,
+    Review, ReviewCreate, ReviewUpdate,
     Gallery, GalleryCreate, GalleryUpdate
 )
 from database import (
@@ -25,12 +25,18 @@ router = APIRouter(prefix="/api/admin", tags=["admin"])
 @router.post("/login", response_model=Token)
 async def admin_login(credentials: AdminUserLogin):
     """Admin login"""
-    admin = await admin_users_collection.find_one({"username": credentials.username})
+    # Check if input is username or email
+    admin = await admin_users_collection.find_one({
+        "$or": [
+            {"username": credentials.username},
+            {"email": credentials.username}
+        ]
+    })
     
     if not admin or not verify_password(credentials.password, admin["password_hash"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password"
+            detail="Incorrect email/username or password"
         )
     
     access_token = create_access_token(data={"sub": admin["username"]})
@@ -72,6 +78,28 @@ async def get_current_admin(username: str = Depends(verify_token)):
     
     admin["_id"] = str(admin["_id"])
     return admin
+
+
+@router.post("/change-password")
+async def change_password(
+    data: AdminPasswordChange,
+    username: str = Depends(verify_token)
+):
+    """Change admin password"""
+    admin = await admin_users_collection.find_one({"username": username})
+    if not admin:
+        raise HTTPException(status_code=404, detail="Admin not found")
+    
+    if not verify_password(data.old_password, admin["password_hash"]):
+        raise HTTPException(status_code=400, detail="Incorrect old password")
+    
+    new_password_hash = get_password_hash(data.new_password)
+    await admin_users_collection.update_one(
+        {"username": username},
+        {"$set": {"password_hash": new_password_hash}}
+    )
+    
+    return {"message": "Password changed successfully"}
 
 
 # ============ PRODUCTS MANAGEMENT ============
@@ -145,6 +173,48 @@ async def get_all_reviews(username: str = Depends(verify_token)):
         review["_id"] = str(review["_id"])
     
     return reviews
+
+
+@router.post("/reviews", response_model=Review, status_code=status.HTTP_201_CREATED)
+async def create_review_admin(review: ReviewCreate, username: str = Depends(verify_token)):
+    """Create a new review (auto-approved)"""
+    review_dict = review.dict()
+    review_dict["approved"] = True
+    review_dict["created_at"] = datetime.utcnow()
+    
+    result = await reviews_collection.insert_one(review_dict)
+    created_review = await reviews_collection.find_one({"_id": result.inserted_id})
+    created_review["_id"] = str(created_review["_id"])
+    
+    return created_review
+
+
+@router.put("/reviews/{review_id}", response_model=Review)
+async def update_review(
+    review_id: str,
+    review_update: ReviewUpdate,
+    username: str = Depends(verify_token)
+):
+    """Update a review"""
+    if not ObjectId.is_valid(review_id):
+        raise HTTPException(status_code=400, detail="Invalid review ID")
+    
+    update_data = {k: v for k, v in review_update.dict().items() if v is not None}
+    if not update_data:
+        raise HTTPException(status_code=400, detail="No update data provided")
+    
+    result = await reviews_collection.update_one(
+        {"_id": ObjectId(review_id)},
+        {"$set": update_data}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+    
+    updated_review = await reviews_collection.find_one({"_id": ObjectId(review_id)})
+    updated_review["_id"] = str(updated_review["_id"])
+    
+    return updated_review
 
 
 @router.put("/reviews/{review_id}/approve", response_model=Review)

@@ -13,55 +13,51 @@ const Home = () => {
           <div className="mb-6">
             <BookOpen className="w-16 h-16 mx-auto text-amber-700 mb-4" />
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">
-              Radhamani Stores
+              PrimeBooks & Stationery
             </h1>
-            <p className="text-3xl md:text-4xl text-amber-800 font-semibold">
-              ராதாமணி ஸ்டோர்ஸ்
-            </p>
           </div>
-          
+
           <p className="text-xl text-gray-700 mb-2 max-w-2xl mx-auto">
-            Your Trusted Book Store & Stationery Since Years
+            Your Premium Destination for Books & Stationery in Vadalur
           </p>
           <p className="text-lg text-gray-600 mb-8">
-            Town Hall, Coimbatore | Open Daily Till 9 PM
+            Abatharanapuram, Vadalur | Mon-Sat 8:30 AM to 9 PM
           </p>
-          
+
           <div className="flex flex-wrap gap-4 justify-center items-center mb-6">
             <div className="flex items-center gap-1 text-amber-600">
               <Star className="w-5 h-5 fill-current" />
               <Star className="w-5 h-5 fill-current" />
               <Star className="w-5 h-5 fill-current" />
               <Star className="w-5 h-5 fill-current" />
-              <span className="text-gray-700 ml-2 font-semibold">3.8 Rating</span>
+              <Star className="w-5 h-5 fill-current" />
+              <span className="text-gray-700 ml-2 font-semibold">Quality Guaranteed</span>
             </div>
-            <span className="text-gray-500">•</span>
-            <span className="text-gray-700 font-medium">30+ Reviews</span>
           </div>
 
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-6 text-lg"
-              onClick={() => window.location.href = 'tel:04222392122'}
+              onClick={() => window.location.href = '/contact'}
             >
               <Phone className="w-5 h-5 mr-2" />
-              Call Now
+              Contact Us
             </Button>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               variant="outline"
               className="border-2 border-amber-700 text-amber-800 hover:bg-amber-50 px-8 py-6 text-lg"
-              onClick={() => window.open('https://maps.google.com/?q=XXV5+XP+Coimbatore', '_blank')}
+              onClick={() => window.location.href = '/contact'}
             >
               <MapPin className="w-5 h-5 mr-2" />
-              Get Directions
+              Visit Store
             </Button>
           </div>
 
-          <div className="mt-8 inline-flex items-center gap-2 bg-green-100 text-green-800 px-6 py-3 rounded-full font-medium">
+          <div className="mt-8 inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-6 py-3 rounded-full font-medium">
             <Clock className="w-5 h-5" />
-            Open Now - Closes 9 PM
+            Reliable Service • Quality Products
           </div>
         </div>
       </section>
@@ -105,8 +101,8 @@ const Home = () => {
                     <MapPin className="w-6 h-6 text-blue-700" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-lg text-gray-900 mb-2">Prime Location</h3>
-                    <p className="text-gray-600">Inside Maharaja Fancy, Town Hall</p>
+                    <h3 className="font-bold text-lg text-gray-900 mb-2">Vadalur Store</h3>
+                    <p className="text-gray-600">Abatharanapuram, Cuddalore</p>
                   </div>
                 </div>
               </CardContent>
@@ -121,12 +117,13 @@ const Home = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             What We Offer
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { title: 'School Books', desc: 'All boards & classes', color: 'bg-amber-600' },
-              { title: 'Study Guides', desc: 'Reference materials', color: 'bg-blue-600' },
-              { title: 'Stationery', desc: 'Complete range', color: 'bg-green-600' },
-              { title: 'General Reading', desc: 'Books for all ages', color: 'bg-red-600' }
+              { title: 'Guides', desc: 'Expert reference materials', color: 'bg-blue-600' },
+              { title: 'Competitive Exam', desc: 'SSC, TNPSC, NEET & more', color: 'bg-red-600' },
+              { title: 'Kids Books', desc: 'Illustrated story books', color: 'bg-purple-600' },
+              { title: 'Stationery', desc: 'Premium quality supplies', color: 'bg-green-600' }
             ].map((cat, idx) => (
               <Card key={idx} className="hover:shadow-xl transition-shadow cursor-pointer group">
                 <CardContent className="p-6 text-center">
