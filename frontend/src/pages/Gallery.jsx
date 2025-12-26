@@ -40,20 +40,27 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockGalleryImages.map((image, idx) => (
-              <Card key={idx} className="overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer">
-                <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative overflow-hidden">
-                  <ImageIcon className="w-16 h-16 text-amber-600 group-hover:scale-110 transition-transform" />
-                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900">{image.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{image.description}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-16">
+              <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4 animate-pulse" />
+              <p className="text-xl text-gray-500">Loading gallery...</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galleryItems.map((image) => (
+                <Card key={image._id} className="overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer">
+                  <div className="aspect-video bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative overflow-hidden">
+                    <ImageIcon className="w-16 h-16 text-amber-600 group-hover:scale-110 transition-transform" />
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900">{image.title}</h3>
+                    <p className="text-sm text-gray-600 mt-1">{image.description}</p>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
