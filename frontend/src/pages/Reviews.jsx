@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { Card, CardContent } from '../components/ui/card';
-import { mockReviews } from '../data/mock';
+import { getReviews } from '../services/api';
 
 const Reviews = () => {
   const renderStars = (rating) => {
