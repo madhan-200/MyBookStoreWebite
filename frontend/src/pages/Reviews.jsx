@@ -4,6 +4,25 @@ import { Card, CardContent } from '../components/ui/card';
 import { getReviews } from '../services/api';
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    try {
+      setLoading(true);
+      const data = await getReviews();
+      setReviews(data);
+    } catch (error) {
+      console.error('Failed to fetch reviews:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const renderStars = (rating) => {
     return (
       <div className="flex gap-1">
