@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Search } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
-import { mockProducts } from '../data/mock';
+import { getProducts } from '../services/api';
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
