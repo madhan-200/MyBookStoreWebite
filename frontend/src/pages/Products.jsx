@@ -8,6 +8,8 @@ import { getProducts } from '../services/api';
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = [
     { id: 'all', name: 'All Products', color: 'bg-gray-600' },
@@ -17,11 +19,27 @@ const Products = () => {
     { id: 'stationery', name: 'Stationery', color: 'bg-red-600' }
   ];
 
-  const filteredProducts = mockProducts.filter(product => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+  useEffect(() => {
+    fetchProducts();
+  }, [selectedCategory]);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const category = selectedCategory === 'all' ? null : selectedCategory;
+      const data = await getProducts(category);
+      setProducts(data);
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   return (
